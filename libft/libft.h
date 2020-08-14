@@ -71,4 +71,15 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 	void (*del)(void *));
 
+int		get_next_line(int fd, char **line);
+size_t	ft_strlen(const char *str);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
+char	*ft_strjoin(char const *prestr, char const *sufstr);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 20
+# endif
+
 #endif
