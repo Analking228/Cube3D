@@ -51,11 +51,13 @@ clean:
 	@rm -rf $(OBJ_FILES) $(BONUS_OBJ)
 	@rm -f screenshot.bmp
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
 	@echo "All object files have been removed"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
+	@make -C $(MLX_DIR) clean
 	@echo "$(NAME) has been removed"
 
 run: re 
