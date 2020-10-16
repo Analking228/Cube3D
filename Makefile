@@ -61,5 +61,3 @@ fclean: clean
 	@echo "$(NAME) and Libs has been removed"
 
 re: fclean all
-
-rebonus: fclean bonus
