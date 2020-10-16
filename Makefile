@@ -1,6 +1,6 @@
 NAME = cub3D
 
-SRC_DIR = src/
+SRCS_DIR = srcs/
 OBJ_DIR = obj/
 INC_DIR = includes/
 LIB_DIR = libs/
@@ -29,7 +29,7 @@ FILES = cub3d \
 		ft_texture \
 		ft_validate \
 
-SRC_FILES = $(addsuffix .c, $(addprefix $(SRC_DIR), $(FILES)))
+SRCS_FILES = $(addsuffix .c, $(addprefix $(SRCS_DIR), $(FILES)))
 
 OBJ_FILES = $(addsuffix .o, $(addprefix $(OBJ_DIR), $(FILES)))
 
@@ -41,27 +41,24 @@ $(NAME): $(OBJ_FILES)
 	@make -C $(LIBFT_DIR)
 	@$(CC) -o $(NAME) $(INCLUDES) $(OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS)
 
-$(OBJ_FILES): $(OBJ_DIR)%.o : $(SRC_DIR)%.c
+$(OBJ_FILES): $(OBJ_DIR)%.o : $(SRCS_DIR)%.c
 	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
 
 clean:
-	@rm -rf $(OBJ_FILES) $(BONUS_OBJ)
+	@rm -rf $(OBJ_FILES)
 	@rm -f screenshot.bmp
 	@make -C $(LIBFT_DIR) clean
 	@make -C $(MLX_DIR) clean
-	@echo "All object files have been removed"
+	@echo "Project has been cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 	@make -C $(MLX_DIR) clean
-	@echo "$(NAME) has been removed"
-
-run: re 
-	./cub3D maps/map.cub
+	@echo "$(NAME) and Libs has been removed"
 
 re: fclean all
 
