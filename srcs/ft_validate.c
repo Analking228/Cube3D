@@ -39,13 +39,11 @@ void		validate_clr(char *line, char clr, t_all *all)
 
 int			validate_args(int argc, char **argv, t_all *all)
 {
-	int		bmp;
+	int		is_scr;
 	int		len;
 
-	bmp = FALSE;
+	is_scr = FALSE;
 	all->frame.mlx = NULL;
-	if (argc == 1)
-		exit_cub("Error\nInvalid first argument", all);
 	if (argc >= 2)
 	{
 		len = ft_strlen(argv[1]) - 4;
@@ -55,13 +53,13 @@ int			validate_args(int argc, char **argv, t_all *all)
 	if (argc == 3)
 	{
 		if (ft_memcmp(argv[2], "--save\0", 7) == 0)
-			bmp = TRUE;
+			is_scr = TRUE;
 		else
 			exit_cub("Error\nInvalid second argument", all);
 	}
 	if (argc > 3)
 		exit_cub("Error\nInvalid number of arguments", all);
-	return (bmp);
+	return (argc == 1) ? exit_cub("Error\nInvalid first argument", all) : is_scr;
 }
 
 void		validate_params(t_all *all)

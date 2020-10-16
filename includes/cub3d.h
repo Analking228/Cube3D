@@ -182,7 +182,7 @@ typedef struct		s_all
 }					t_all;
 
 int					close_me(t_all *all);
-void				exit_cub(char *error, t_all *all);
+int					exit_cub(char *error, t_all *all);
 void				validate_map(t_all *all, char **map);
 void				validate_params(t_all *all);
 void				check_parser(t_all *all);

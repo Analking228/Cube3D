@@ -40,11 +40,12 @@ static void	close_mlx(t_all *all)
 		free(all->frame.mlx);
 }
 
-void		exit_cub(char *error, t_all *all)
+int			exit_cub(char *error, t_all *all)
 {
 	ft_putendl(error);
 	close_mlx(all);
 	free_mem(NULL);
 	errno = errno == 11 ? 0 : errno;
 	exit(errno);
+	return (0);
 }
