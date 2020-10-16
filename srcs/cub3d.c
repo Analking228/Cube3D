@@ -108,10 +108,10 @@ int			key_r(int keycode, t_all *all)
 int			main(int argc, char **argv)
 {
 	t_all	all;
-	int		bmp;
+	int		is_scr;
 
-	bmp = validate_args(argc, argv, &all);
-	preparing_cub(&all, argv[1], bmp);
+	is_scr = validate_args(argc, argv, &all);
+	preparing_cub(&all, argv[1], is_scr);
 	mlx_hook(all.frame.win, 17, 0, close_me, &all);
 	mlx_hook(all.frame.win, 2, 0, key_p, &all);
 	mlx_hook(all.frame.win, 3, 0, key_r, &all);
