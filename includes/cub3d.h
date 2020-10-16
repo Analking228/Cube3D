@@ -196,7 +196,7 @@ int					rendering(t_all *all);
 void				import_text(char *path, t_img *texture, t_all *all);
 void				ft_floor_n_ceiling(int x, int y, t_all *all);
 void				parse_map(t_all *all, t_list *params);
-void				parser(char *map, t_all *all);
+void				ft_parser(char *map, t_all *all);
 void				raycast(t_all *all);
 void				rendering_spr(t_all *all);
 int					ft_wall(double x, double y, t_all *all);

@@ -116,31 +116,30 @@ static void		parse_params(t_list *list, t_all *all)
 	}
 }
 
-void			parser(char *map, t_all *all)
+void			ft_parser(char *path, t_all *all)
 {
 	int			fd;
 	char		*line;
-	t_list		*params;
-	t_list		*ptr;
+	t_list		*map_strs;
+	t_list		*tmp;
 	int			gnl;
 
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
+	if ((fd = open(path, O_RDONLY)) < 0)
 		exit_cub("Error\nInvalid config file", all);
-	params = NULL;
+	map_strs = NULL;
 	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
-		if (!(ptr = ft_lstnew(line)))
+		if (!(tmp = ft_lstnew(line)))
 			exit_cub("Error\nMalloc failed", all);
-		ft_lstadd_back(&params, ptr);
+		ft_lstadd_back(&map_strs, tmp);
 	}
 	if (gnl == -1)
 		exit_cub("Error\nGNL failed", all);
-	if (!(ptr = ft_lstnew(line)))
+	if (!(tmp = ft_lstnew(line)))
 		exit_cub("Error\nMalloc failed", all);
-	ft_lstadd_back(&params, ptr);
+	ft_lstadd_back(&map_strs, tmp);
 	close(fd);
-	parse_params(params, all);
+	parse_params(map_strs, all);
 	validate_params(all);
-	parse_map(all, params);
+	parse_map(all, map_strs);
 }

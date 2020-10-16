@@ -19,7 +19,7 @@ void			check_parser(t_all *all)
 	validate_map(all, all->map.tab);
 }
 
-static void		init_all_structs(t_all *all)
+static void		initialization(t_all *all)
 {
 	all->frame.win = NULL;
 	all->frame.mlx = NULL;
@@ -58,12 +58,12 @@ static void		create_img(t_img *img, t_frame *screen, t_all *all)
 
 void			preparing_cub(t_all *all, char *path, int bmp)
 {
-	init_all_structs(all);
+	initialization(all);
 	all->plr.pos = 0;
 	all->frame.mlx = mlx_init();
 	if (all->frame.mlx == NULL)
 		exit_cub("Error\nmlx init failed", all);
-	parser(path, all);
+	ft_parser(path, all);
 	if (!(all->ray = malloc_mem(sizeof(t_ray) * all->frame.w)))
 		exit_cub("Error\nmalloc for rays failed", all);
 	create_img(&all->img, &all->frame, all);
