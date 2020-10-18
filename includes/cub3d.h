@@ -189,7 +189,7 @@ void				check_parser(t_all *all);
 int					ft_validation(int argc, char **argv, t_all *all);
 void				validate_clr(char *line, char clr, t_all *all);
 void				validate_line(char *line, t_all *all);
-void				preparing_cub(t_all *all, char *path, int bmp);
+void				ft_preparation(t_all *all, char *path, int bmp);
 void				ft_bmp(t_all *all);
 int					create_trgb(int t, int r, int g, int b);
 int					rendering(t_all *all);

@@ -37,6 +37,7 @@ static void		initialization(t_all *all)
 	all->plr.turn_speed = 5 * (M_PI / 180);
 	all->plr.walk_dir = 0;
 	all->plr.walk_speed = 5;
+	all->plr.pos = 0;
 	all->frame.w = -1;
 	all->frame.h = -1;
 	all->map.tab = NULL;
@@ -56,12 +57,10 @@ static void		create_img(t_img *img, t_frame *screen, t_all *all)
 		exit_cub("Error\nmlx function failed", all);
 }
 
-void			preparing_cub(t_all *all, char *path, int bmp)
+void			ft_preparation(t_all *all, char *path, int bmp)
 {
 	initialization(all);
-	all->plr.pos = 0;
-	all->frame.mlx = mlx_init();
-	if (all->frame.mlx == NULL)
+	if (!(all->frame.mlx = mlx_init()))
 		exit_cub("Error\nmlx init failed", all);
 	ft_parser(path, all);
 	if (!(all->ray = malloc_mem(sizeof(t_ray) * all->frame.w)))

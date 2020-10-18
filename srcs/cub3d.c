@@ -111,7 +111,7 @@ int			main(int argc, char **argv)
 	int		is_scr;
 
 	is_scr = ft_validation(argc, argv, &all);
-	preparing_cub(&all, argv[1], is_scr);
+	ft_preparation(&all, argv[1], is_scr);
 	mlx_hook(all.frame.win, 17, 0, close_me, &all);
 	mlx_hook(all.frame.win, 2, 0, key_p, &all);
 	mlx_hook(all.frame.win, 3, 0, key_r, &all);
