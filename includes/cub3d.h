@@ -186,7 +186,7 @@ int					exit_cub(char *error, t_all *all);
 void				validate_map(t_all *all, char **map);
 void				validate_params(t_all *all);
 void				check_parser(t_all *all);
-int					validate_args(int argc, char **argv, t_all *all);
+int					ft_validation(int argc, char **argv, t_all *all);
 void				validate_clr(char *line, char clr, t_all *all);
 void				validate_line(char *line, t_all *all);
 void				preparing_cub(t_all *all, char *path, int bmp);

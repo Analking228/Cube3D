@@ -63,5 +63,5 @@ fclean: clean
 re: fclean all
 
 run: re 
-	./cub3D maps/map.cub
+	./cub3D map.cub
 	

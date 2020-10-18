@@ -37,7 +37,7 @@ void		validate_clr(char *line, char clr, t_all *all)
 	}
 }
 
-int			validate_args(int argc, char **argv, t_all *all)
+int			ft_validation(int argc, char **argv, t_all *all)
 {
 	int		is_scr;
 	int		len;
@@ -47,12 +47,12 @@ int			validate_args(int argc, char **argv, t_all *all)
 	if (argc >= 2)
 	{
 		len = ft_strlen(argv[1]) - 4;
-		if (len <= 0 || ft_memcmp(argv[1] + len, ".cub\0", 5) != 0)
+		if (len <= 0 || ft_strncmp(argv[1] + len, ".cub\0", 5) != 0)
 			exit_cub("Error\nInvalid first argument", all);
 	}
 	if (argc == 3)
 	{
-		if (ft_memcmp(argv[2], "--save\0", 7) == 0)
+		if (ft_strncmp(argv[2], "--save\0", 7) == 0)
 			is_scr = TRUE;
 		else
 			exit_cub("Error\nInvalid second argument", all);

@@ -15,7 +15,7 @@
 int			close_me(t_all *all)
 {
 	exit_cub("Exit from cub.", all);
-	return (0);
+	return (-1);
 }
 
 static void	close_mlx(t_all *all)
