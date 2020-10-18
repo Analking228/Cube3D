@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Куб запуск",
+            "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "./Cube3D/cub3D",
-            "args": ["./Cube3D/map.cub"],
+            "program": "${workspaceFolder}/cub3D",
+            "args": ["map.cub"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
