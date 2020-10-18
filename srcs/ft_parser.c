@@ -87,7 +87,7 @@ static void		make_res(char *str, t_all *all)
 	all->frame.h = all->frame.h > height ? height : all->frame.h;
 }
 
-static void		parse_params(t_list *list, t_all *all)
+static void		ft_parse_params(t_list *list, t_all *all)
 {
 	size_t		len;
 
@@ -97,15 +97,15 @@ static void		parse_params(t_list *list, t_all *all)
 		if (ft_strnstr(list->content, "R ", len))
 			make_res(list->content, all);
 		else if (ft_strnstr(list->content, "NO ", len))
-			make_texture(list->content, all, 'N');
+			ft_texture(list->content, all, 'N');
 		else if (ft_strnstr(list->content, "SO ", len))
-			make_texture(list->content, all, 'S');
+			ft_texture(list->content, all, 'S');
 		else if (ft_strnstr(list->content, "WE ", len))
-			make_texture(list->content, all, 'W');
+			ft_texture(list->content, all, 'W');
 		else if (ft_strnstr(list->content, "EA ", len))
-			make_texture(list->content, all, 'E');
+			ft_texture(list->content, all, 'E');
 		else if (ft_strnstr(list->content, "S ", len))
-			make_texture(list->content, all, 's');
+			ft_texture(list->content, all, 's');
 		else if (ft_strnstr(list->content, "F ", len))
 			make_color(list->content, all, 'F');
 		else if (ft_strnstr(list->content, "C ", len))
@@ -116,7 +116,7 @@ static void		parse_params(t_list *list, t_all *all)
 	}
 }
 
-void			ft_parser(char *path, t_all *all)
+void			ft_parse(char *path, t_all *all)
 {
 	int			fd;
 	char		*line;
@@ -139,7 +139,7 @@ void			ft_parser(char *path, t_all *all)
 		exit_cub("Error\nMalloc failed", all);
 	ft_lstadd_back(&map_strs, tmp);
 	close(fd);
-	parse_params(map_strs, all);
-	validate_params(all);
-	parse_map(all, map_strs);
+	ft_parse_params(map_strs, all);
+	ft_validation_params(all);
+	ft_parse_map(all, map_strs);
 }

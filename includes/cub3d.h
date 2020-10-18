@@ -183,9 +183,8 @@ typedef struct		s_all
 
 int					close_me(t_all *all);
 int					exit_cub(char *error, t_all *all);
-void				validate_map(t_all *all, char **map);
-void				validate_params(t_all *all);
-void				check_parser(t_all *all);
+void				ft_validate_map(t_all *all, char **map);
+void				ft_validation_params(t_all *all);
 int					ft_validation(int argc, char **argv, t_all *all);
 void				validate_clr(char *line, char clr, t_all *all);
 void				validate_line(char *line, t_all *all);
@@ -195,12 +194,13 @@ int					create_trgb(int t, int r, int g, int b);
 int					rendering(t_all *all);
 void				import_text(char *path, t_img *texture, t_all *all);
 void				ft_floor_n_ceiling(int x, int y, t_all *all);
-void				parse_map(t_all *all, t_list *params);
-void				ft_parser(char *map, t_all *all);
+void				ft_parse_map(t_all *all, t_list *params);
+void				ft_parse(char *map, t_all *all);
 void				raycast(t_all *all);
 void				rendering_spr(t_all *all);
 int					ft_wall(double x, double y, t_all *all);
 void				plr_spot(t_all *all);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void				make_texture(char *str, t_all *all, char type);
+void				ft_texture(char *str, t_all *all, char type);
+
 #endif

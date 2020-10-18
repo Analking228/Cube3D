@@ -26,7 +26,7 @@ void		import_text(char *path, t_img *text, t_all *all)
 		exit_cub("Error\nInvalid texture file", all);
 }
 
-void		make_texture(char *str, t_all *all, char type)
+void		ft_texture(char *str, t_all *all, char type)
 {
 	while (*str && ft_isspace(*str))
 		str++;

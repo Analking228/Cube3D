@@ -62,7 +62,7 @@ int			ft_validation(int argc, char **argv, t_all *all)
 	return (argc == 1) ? exit_cub("Error\nInvalid first argument", all) : is_scr;
 }
 
-void		validate_params(t_all *all)
+void		ft_validation_params(t_all *all)
 {
 	if (all->frame.w == -1 || all->frame.h == -1)
 		exit_cub("Error\nNo resolution", all);
@@ -82,13 +82,13 @@ void		validate_params(t_all *all)
 		exit_cub("Error\nNo floor color", all);
 }
 
-void		validate_map(t_all *all, char **map)
+void		ft_validate_map(t_all *all, char **map)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	while (map[++i] != NULL)
+	while (map[++i])
 	{
 		j = -1;
 		while (map[i][++j] != '\0')

@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static void		init_player(char wall, int x, int y, t_all *all)
+static void		ft_player(char wall, int x, int y, t_all *all)
 {
 	if (all->plr.angle != -1 || all->plr.x != 0 || all->plr.y != 0)
 		exit_cub("Error\nMultiple player", all);
@@ -46,6 +46,8 @@ static void		ft_align(t_all *all, int max)
 	}
 	all->map.x = max;
 	all->map.y = i;
+	if (all->plr.pos <= 0)
+		exit_cub("Error\nNo starting position", all);
 }
 
 static void		draw_sprite(t_all *all)
@@ -76,19 +78,19 @@ static void		draw_sprite(t_all *all)
 	}
 }
 
-static void		parse_line(char *str, int y, t_all *all)
+static void		ft_parse_line(char *str, int y, t_all *all)
 {
 	int			x;
 
 	x = 0;
 	if (!(ft_strchr(str, '1')))
-		exit_cub("Error\nEmpty string after map", all);
-	while (str[x] != '\0')
+		exit_cub("Error\nWrong string after map", all);
+	while (str[x])
 	{
 		if (str[x] == 'N' || str[x] == 'S' || str[x] == 'W' || str[x] == 'E')
 		{
 			all->plr.pos = 1;
-			init_player(str[x], x, y, all);
+			ft_player(str[x], x, y, all);
 		}
 		else if (str[x] == '2')
 			all->map.sprites++;
@@ -98,12 +100,12 @@ static void		parse_line(char *str, int y, t_all *all)
 	}
 }
 
-void			parse_map(t_all *all, t_list *params)
+void			ft_parse_map(t_all *all, t_list *params)
 {
-	size_t		i;
+	size_t		y;
 	size_t		m;
 
-	i = 0;
+	y = 0;
 	m = 0;
 	while (params && ft_atoi(params->content) == 0)
 		params = params->next;
@@ -111,15 +113,15 @@ void			parse_map(t_all *all, t_list *params)
 		exit_cub("Error\nMalloc for map failed", all);
 	while (params)
 	{
-		parse_line(params->content, i, all);
-		all->map.tab[i++] = params->content;
+		ft_parse_line(params->content, y, all);
+		all->map.tab[y++] = params->content;
 		m = m < ft_strlen(params->content) ? ft_strlen(params->content) : m;
 		params = params->next;
 	}
-	all->map.tab[i] = NULL;
+	all->map.tab[y] = NULL;
 	ft_align(all, m);
-	check_parser(all);
-	m = m < i ? i : m;
+	ft_validate_map(all, all->map.tab);
+	m = m < y ? y : m;
 	all->map.pix = all->frame.h > all->frame.w \
 				? all->frame.h / m : all->frame.w / m;
 	all->plr.x *= all->map.pix;

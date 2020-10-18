@@ -12,13 +12,6 @@
 
 #include "../includes/cub3d.h"
 
-void			check_parser(t_all *all)
-{
-	if (all->plr.pos <= 0)
-		exit_cub("Error\nNo starting position", all);
-	validate_map(all, all->map.tab);
-}
-
 static void		initialization(t_all *all)
 {
 	all->frame.win = NULL;
@@ -62,7 +55,7 @@ void			ft_preparation(t_all *all, char *path, int bmp)
 	initialization(all);
 	if (!(all->frame.mlx = mlx_init()))
 		exit_cub("Error\nmlx init failed", all);
-	ft_parser(path, all);
+	ft_parse(path, all);
 	if (!(all->ray = malloc_mem(sizeof(t_ray) * all->frame.w)))
 		exit_cub("Error\nmalloc for rays failed", all);
 	create_img(&all->img, &all->frame, all);
