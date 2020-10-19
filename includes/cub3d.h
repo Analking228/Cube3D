@@ -192,7 +192,6 @@ void				ft_preparation(t_all *all, char *path, int bmp);
 void				ft_bmp(t_all *all);
 int					create_trgb(int t, int r, int g, int b);
 int					rendering(t_all *all);
-void				import_text(char *path, t_img *texture, t_all *all);
 void				ft_floor_n_ceiling(int x, int y, t_all *all);
 void				ft_parse_map(t_all *all, t_list *params);
 void				ft_parse(char *map, t_all *all);

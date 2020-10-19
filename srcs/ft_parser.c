@@ -125,7 +125,7 @@ void			ft_parse(char *path, t_all *all)
 	int			gnl;
 
 	if ((fd = open(path, O_RDONLY)) < 0)
-		exit_cub("Error\nInvalid config file", all);
+		exit_cub("Error\nNo such file exists", all);
 	map_strs = NULL;
 	while ((gnl = get_next_line(fd, &line)) > 0)
 	{

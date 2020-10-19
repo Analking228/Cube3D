@@ -91,9 +91,9 @@ void		ft_validate_map(t_all *all, char **map)
 	while (map[++i])
 	{
 		j = -1;
-		while (map[i][++j] != '\0')
+		while (map[i][++j])
 		{
-			if (map[i][j] != '1' && map[i][j] != ' ' && map[i][j] != '\0')
+			if (map[i][j] != '1' && map[i][j] != ' ' && map[i][j])
 			{
 				if (j == 0 || j == all->map.x - 1)
 					exit_cub("Error\nInvalid map", all);
