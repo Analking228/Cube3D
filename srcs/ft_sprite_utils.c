@@ -33,7 +33,7 @@ static void			spr_params(t_all *all)
 		all->sprite[i].x_ff = all->frame.w / (FOV * (180 / M_PI)) * \
 		((180 / M_PI * all->sprite[i].angle) + 30) - all->sprite[i].size / 2;
 		all->sprite[i].y_ff = all->frame.h / 2 - all->sprite[i].size / 2;
-		all->sprite[i].step = all->text.spr.height / all->sprite[i].size;
+		all->sprite[i].step = all->texture.spr.height / all->sprite[i].size;
 		all->sprite[i].tex_pos = 0;
 		i++;
 	}
@@ -76,14 +76,14 @@ static void			ft_sprite(t_all *all, t_sprite sp)
 		if (sp.x_ff + i > all->frame.w || sp.x_ff + i < 0 || \
 					all->ray[i + (int)sp.x_ff].dist < sp.dist)
 			continue;
-		tex_x = i / sp.size * all->text.spr.width;
+		tex_x = i / sp.size * all->texture.spr.width;
 		sp.tex_pos = 0;
 		j = -1;
 		while (++j < sp.size)
 		{
-			tex_y = (unsigned int)sp.tex_pos & (all->text.spr.height - 1);
-			sp.clr = (unsigned int *)(all->text.spr.addr + \
-				(tex_y * all->text.spr.len + tex_x * (all->text.spr.bpp / 8)));
+			tex_y = (unsigned int)sp.tex_pos & (all->texture.spr.height - 1);
+			sp.clr = (unsigned int *)(all->texture.spr.addr + \
+				(tex_y * all->texture.spr.len + tex_x * (all->texture.spr.bpp / 8)));
 			sp.tex_pos += sp.step;
 			if (sp.y_ff + j > all->frame.h || sp.y_ff + i < 0 || *sp.clr == 0x0)
 				continue;

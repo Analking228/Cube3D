@@ -16,11 +16,11 @@ static void		initialization(t_all *all)
 {
 	all->frame.win = NULL;
 	all->frame.mlx = NULL;
-	all->text.e.img = NULL;
-	all->text.w.img = NULL;
-	all->text.s.img = NULL;
-	all->text.n.img = NULL;
-	all->text.spr.img = NULL;
+	all->texture.e.img = NULL;
+	all->texture.w.img = NULL;
+	all->texture.s.img = NULL;
+	all->texture.n.img = NULL;
+	all->texture.spr.img = NULL;
 	all->img.img = NULL;
 	all->plr.x = 0;
 	all->plr.y = 0;

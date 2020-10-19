@@ -18,21 +18,21 @@ static t_img			init_side(t_all *all, t_ray ray, int *flag)
 	if (ray.is_vert)
 	{
 		if (ray.is_right)
-			return (all->text.w);
+			return (all->texture.w);
 		else
 		{
 			*flag = 1;
-			return (all->text.e);
+			return (all->texture.e);
 		}
 	}
 	else
 	{
 		if (ray.is_up)
-			return (all->text.n);
+			return (all->texture.n);
 		else
 		{
 			*flag = 1;
-			return (all->text.s);
+			return (all->texture.s);
 		}
 	}
 }

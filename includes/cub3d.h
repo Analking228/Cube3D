@@ -151,14 +151,14 @@ typedef struct		s_sprite
 	unsigned int	*clr;
 }					t_sprite;
 
-typedef struct		s_text
+typedef struct		s_texture
 {
 	t_img			n;
 	t_img			s;
 	t_img			w;
 	t_img			e;
 	t_img			spr;
-}					t_text;
+}					t_texture;
 
 typedef struct		s_frame
 {
@@ -176,7 +176,7 @@ typedef struct		s_all
 	t_ray			*ray;
 	t_img			img;
 	t_map			map;
-	t_text			text;
+	t_texture		texture;
 	t_sprite		*sprite;
 	t_frame			frame;
 }					t_all;

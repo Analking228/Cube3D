@@ -66,15 +66,15 @@ void		ft_validation_params(t_all *all)
 {
 	if (all->frame.w == -1 || all->frame.h == -1)
 		exit_cub("Error\nNo resolution", all);
-	if (all->text.s.img == NULL)
+	if (all->texture.s.img == NULL)
 		exit_cub("Error\nNo south texture", all);
-	if (all->text.n.img == NULL)
+	if (all->texture.n.img == NULL)
 		exit_cub("Error\nNo north texture", all);
-	if (all->text.e.img == NULL)
+	if (all->texture.e.img == NULL)
 		exit_cub("Error\nNo east texture", all);
-	if (all->text.w.img == NULL)
+	if (all->texture.w.img == NULL)
 		exit_cub("Error\nNo west texture", all);
-	if (all->text.s.img == NULL)
+	if (all->texture.s.img == NULL)
 		exit_cub("Error\nNo sprite texture", all);
 	if (all->map.c_clr == -1)
 		exit_cub("Error\nNo ceiling color", all);

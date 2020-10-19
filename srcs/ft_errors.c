@@ -24,16 +24,16 @@ static void	close_mlx(t_all *all)
 		return ;
 	if (all->frame.win)
 		mlx_destroy_window(all->frame.mlx, all->frame.win);
-	if (all->text.e.img)
-		mlx_destroy_image(all->frame.mlx, all->text.e.img);
-	if (all->text.n.img)
-		mlx_destroy_image(all->frame.mlx, all->text.n.img);
-	if (all->text.s.img)
-		mlx_destroy_image(all->frame.mlx, all->text.s.img);
-	if (all->text.w.img)
-		mlx_destroy_image(all->frame.mlx, all->text.w.img);
-	if (all->text.spr.img)
-		mlx_destroy_image(all->frame.mlx, all->text.spr.img);
+	if (all->texture.e.img)
+		mlx_destroy_image(all->frame.mlx, all->texture.e.img);
+	if (all->texture.n.img)
+		mlx_destroy_image(all->frame.mlx, all->texture.n.img);
+	if (all->texture.s.img)
+		mlx_destroy_image(all->frame.mlx, all->texture.s.img);
+	if (all->texture.w.img)
+		mlx_destroy_image(all->frame.mlx, all->texture.w.img);
+	if (all->texture.spr.img)
+		mlx_destroy_image(all->frame.mlx, all->texture.spr.img);
 	if (all->img.img)
 		mlx_destroy_image(all->frame.mlx, all->img.img);
 	if (all->frame.mlx)
