@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static void			spr_params(t_all *all)
+static void			ft_sprite_params(t_all *all)
 {
 	int				i;
 
@@ -39,7 +39,7 @@ static void			spr_params(t_all *all)
 	}
 }
 
-static void			sort_spr(t_all *all)
+static void			ft_sprite_sort(t_all *all)
 {
 	int				i;
 	int				j;
@@ -63,7 +63,7 @@ static void			sort_spr(t_all *all)
 	}
 }
 
-static void			ft_sprite(t_all *all, t_sprite sp)
+static void			ft_sprite_initialization(t_all *all, t_sprite sp)
 {
 	int				i;
 	int				j;
@@ -92,16 +92,16 @@ static void			ft_sprite(t_all *all, t_sprite sp)
 	}
 }
 
-void				ft_sprite_render(t_all *all)
+void				ft_sprite(t_all *all)
 {
 	int				i;
 
 	i = 0;
-	spr_params(all);
-	sort_spr(all);
+	ft_sprite_params(all);
+	ft_sprite_sort(all);
 	while (i < all->map.sprites)
 	{
-		ft_sprite(all, all->sprite[i]);
+		ft_sprite_initialization(all, all->sprite[i]);
 		i++;
 	}
 }

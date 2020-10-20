@@ -94,6 +94,6 @@ int						ft_rendering(t_all *all)
 	plr_pos(all);
 	ft_raycast(all);
 	ft_render_walls(all);
-	ft_sprite_render(all);
+	ft_sprite(all);
 	return (1);
 }

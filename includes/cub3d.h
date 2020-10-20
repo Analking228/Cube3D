@@ -26,7 +26,6 @@
 # define SPRITE 2
 # define OUTSIDE 3
 
-# define MINIMAP_SCALE 0.3f
 # define FOV 60 * (M_PI / 180)
 
 # define ESC	53
@@ -197,7 +196,7 @@ void				ft_backstage_ceilling(int x, int y, t_all *all, int color);
 void				ft_parse_map(t_all *all, t_list *params);
 void				ft_parse(char *map, t_all *all);
 void				ft_raycast(t_all *all);
-void				ft_sprite_render(t_all *all);
+void				ft_sprite(t_all *all);
 int					ft_wall(double x, double y, t_all *all);
 void				plr_pos(t_all *all);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
