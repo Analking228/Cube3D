@@ -130,8 +130,8 @@ typedef struct		s_map
 {
 	char			**tab;
 	double			pix;
-	int				f_clr;
-	int				c_clr;
+	int				f_color;
+	int				c_color;
 	int				sprites;
 	int				x;
 	int				y;
@@ -184,7 +184,7 @@ typedef struct		s_all
 int					close_me(t_all *all);
 int					exit_cub(char *error, t_all *all);
 void				ft_validate_map(t_all *all, char **map);
-void				ft_validation_params(t_all *all);
+void				ft_validate_params(t_all *all);
 int					ft_validation(int argc, char **argv, t_all *all);
 void				validate_clr(char *line, char clr, t_all *all);
 void				validate_line(char *line, t_all *all);

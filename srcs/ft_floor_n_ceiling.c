@@ -31,7 +31,7 @@ void		ft_floor_n_ceiling(int x, int y, t_all *all)
 	i = x;
 	width = all->frame.w;
 	height = all->frame.h / 2;
-	color = y == 0 ? all->map.c_clr : all->map.f_clr;
+	color = y == 0 ? all->map.c_color : all->map.f_color;
 	while (i < x + width)
 	{
 		j = y;

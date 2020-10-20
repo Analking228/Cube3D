@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static int		cnt_comma(char *str)
+static int		ft_parse_count(char *str)
 {
 	int			cnt;
 
@@ -30,7 +30,7 @@ static int		cnt_comma(char *str)
 	return (cnt);
 }
 
-static void		make_color(char *str, t_all *all, char color)
+static void		ft_parse_color(char *str, t_all *all, char color)
 {
 	char		**clr;
 	int			rgb[3];
@@ -39,7 +39,7 @@ static void		make_color(char *str, t_all *all, char color)
 	while (*str && ft_isspace(*str))
 		str++;
 	str++;
-	(cnt_comma(str) == 2) ? validate_clr(str, color, all) :
+	(ft_parse_count(str) == 2) ? validate_clr(str, color, all) :
 				exit_cub("Error\nInvalid color configuration", all);
 	if (!(clr = ft_split(str, ',')))
 		exit_cub("Error\nMalloc failed", all);
@@ -52,13 +52,13 @@ static void		make_color(char *str, t_all *all, char color)
 		i++;
 	}
 	free_mem(clr);
-	if (color == 'C')
-		all->map.c_clr = create_trgb(0, rgb[0], rgb[1], rgb[2]);
-	else if (color == 'F')
-		all->map.f_clr = create_trgb(0, rgb[0], rgb[1], rgb[2]);
+	if (color == 'F')
+		all->map.f_color = create_trgb(0, rgb[0], rgb[1], rgb[2]);
+	else if (color == 'C')
+		all->map.c_color = create_trgb(0, rgb[0], rgb[1], rgb[2]);
 }
 
-static void		make_res(char *str, t_all *all)
+static void		ft_parse_resolution(char *str, t_all *all)
 {
 	int		width;
 	int		height;
@@ -95,7 +95,7 @@ static void		ft_parse_params(t_list *list, t_all *all)
 	{
 		len = ft_strlen(list->content);
 		if (ft_strnstr(list->content, "R ", len))
-			make_res(list->content, all);
+			ft_parse_resolution(list->content, all);
 		else if (ft_strnstr(list->content, "NO ", len))
 			ft_texture(list->content, all, 'N');
 		else if (ft_strnstr(list->content, "SO ", len))
@@ -107,9 +107,9 @@ static void		ft_parse_params(t_list *list, t_all *all)
 		else if (ft_strnstr(list->content, "S ", len))
 			ft_texture(list->content, all, 's');
 		else if (ft_strnstr(list->content, "F ", len))
-			make_color(list->content, all, 'F');
+			ft_parse_color(list->content, all, 'F');
 		else if (ft_strnstr(list->content, "C ", len))
-			make_color(list->content, all, 'C');
+			ft_parse_color(list->content, all, 'C');
 		else
 			validate_line(list->content, all);
 		list = list->next;
@@ -140,6 +140,6 @@ void			ft_parse(char *path, t_all *all)
 	ft_lstadd_back(&map_strs, tmp);
 	close(fd);
 	ft_parse_params(map_strs, all);
-	ft_validation_params(all);
+	ft_validate_params(all);
 	ft_parse_map(all, map_strs);
 }

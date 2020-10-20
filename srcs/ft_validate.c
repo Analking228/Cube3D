@@ -25,9 +25,9 @@ void		validate_clr(char *line, char clr, t_all *all)
 	int		i;
 
 	i = 1;
-	if (clr == 'F' && all->map.f_clr != -1)
+	if (clr == 'F' && all->map.f_color != -1)
 		exit_cub("Error\nMultiple floor color instruction", all);
-	if (clr == 'C' && all->map.c_clr != -1)
+	if (clr == 'C' && all->map.c_color != -1)
 		exit_cub("Error\nMultiple ceiling color instruction", all);
 	while (line[i])
 	{
@@ -62,7 +62,7 @@ int			ft_validation(int argc, char **argv, t_all *all)
 	return (argc == 1) ? exit_cub("Error\nInvalid first argument", all) : is_scr;
 }
 
-void		ft_validation_params(t_all *all)
+void		ft_validate_params(t_all *all)
 {
 	if (all->frame.w == -1 || all->frame.h == -1)
 		exit_cub("Error\nNo resolution", all);
@@ -76,10 +76,10 @@ void		ft_validation_params(t_all *all)
 		exit_cub("Error\nNo west texture", all);
 	if (all->texture.s.img == NULL)
 		exit_cub("Error\nNo sprite texture", all);
-	if (all->map.c_clr == -1)
-		exit_cub("Error\nNo ceiling color", all);
-	if (all->map.f_clr == -1)
+	if (all->map.f_color == -1)
 		exit_cub("Error\nNo floor color", all);
+	if (all->map.c_color == -1)
+		exit_cub("Error\nNo ceilling color", all);
 }
 
 void		ft_validate_map(t_all *all, char **map)

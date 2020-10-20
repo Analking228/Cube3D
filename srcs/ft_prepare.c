@@ -34,8 +34,8 @@ static void		initialization(t_all *all)
 	all->frame.w = -1;
 	all->frame.h = -1;
 	all->map.tab = NULL;
-	all->map.f_clr = -1;
-	all->map.c_clr = -1;
+	all->map.f_color = -1;
+	all->map.c_color = -1;
 	all->map.sprites = 0;
 }
 
