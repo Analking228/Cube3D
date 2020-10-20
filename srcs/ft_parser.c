@@ -40,14 +40,14 @@ static void		ft_parse_color(char *str, t_all *all, char color)
 		str++;
 	str++;
 	(ft_parse_count(str) == 2) ? validate_clr(str, color, all) :
-				exit_cub("Error\nInvalid color configuration", all);
+				abort_cub("Error\nInvalid color configuration", all);
 	if (!(clr = ft_split(str, ',')))
-		exit_cub("Error\nMalloc failed", all);
+		abort_cub("Error\nMalloc failed", all);
 	i = 0;
 	while (clr && clr[i] != NULL)
 	{
 		if ((rgb[i] = ft_atoi(clr[i])) > 255 || clr[i] < 0 || i > 2)
-			exit_cub("Error\nInvalid color configutation", all);
+			abort_cub("Error\nInvalid color configutation", all);
 		free_mem(clr[i]);
 		i++;
 	}
@@ -65,7 +65,7 @@ static void		ft_parse_resolution(char *str, t_all *all)
 
 	mlx_get_screen_size(all->frame.mlx, &width, &height);
 	if (all->frame.w != -1 || all->frame.h != -1)
-		exit_cub("Error\nMultiple resolution", all);
+		abort_cub("Error\nMultiple resolution", all);
 	str = ft_strchr(str, 'R');
 	str++;
 	all->frame.w = ft_atoi(str);
@@ -79,10 +79,10 @@ static void		ft_parse_resolution(char *str, t_all *all)
 	while (*str)
 	{
 		if (ft_isspace(*str++) || ft_isalpha(*str++))
-			exit_cub("Error\nInvalid resolution string", all);
+			abort_cub("Error\nInvalid resolution string", all);
 	}
 	if (all->frame.w <= 0 || all->frame.h <= 0)
-		exit_cub("Error\nInvalid resolution", all);
+		abort_cub("Error\nInvalid resolution", all);
 	all->frame.w = all->frame.w > width ? width : all->frame.w;
 	all->frame.h = all->frame.h > height ? height : all->frame.h;
 }
@@ -125,18 +125,18 @@ void			ft_parse(char *path, t_all *all)
 	int			gnl;
 
 	if ((fd = open(path, O_RDONLY)) < 0)
-		exit_cub("Error\nNo such file exists", all);
+		abort_cub("Error\nNo such file exists", all);
 	map_strs = NULL;
 	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
 		if (!(tmp = ft_lstnew(line)))
-			exit_cub("Error\nMalloc failed", all);
+			abort_cub("Error\nMalloc failed", all);
 		ft_lstadd_back(&map_strs, tmp);
 	}
 	if (gnl == -1)
-		exit_cub("Error\nGNL failed", all);
+		abort_cub("Error\nGNL failed", all);
 	if (!(tmp = ft_lstnew(line)))
-		exit_cub("Error\nMalloc failed", all);
+		abort_cub("Error\nMalloc failed", all);
 	ft_lstadd_back(&map_strs, tmp);
 	close(fd);
 	ft_parse_params(map_strs, all);

@@ -15,7 +15,7 @@
 static void		ft_player(char wall, int x, int y, t_all *all)
 {
 	if (all->plr.angle != -1 || all->plr.x != 0 || all->plr.y != 0)
-		exit_cub("Error\nMultiple player", all);
+		abort_cub("Error\nMultiple player position", all);
 	all->plr.x = x + 0.5;
 	all->plr.y = y + 0.5;
 	if (wall == 'N')
@@ -47,7 +47,7 @@ static void		ft_align(t_all *all, int max)
 	all->map.x = max;
 	all->map.y = i;
 	if (all->plr.pos <= 0)
-		exit_cub("Error\nNo starting position", all);
+		abort_cub("Error\nNo player position", all);
 }
 
 static void		draw_sprite(t_all *all)
@@ -60,7 +60,7 @@ static void		draw_sprite(t_all *all)
 	i = 0;
 	all->sprite = malloc_mem(sizeof(t_sprite) * (all->map.sprites));
 	if (all->sprite == NULL)
-		exit_cub("Error\nMalloc for sprite failed", all);
+		abort_cub("Error\nSprite malloc failed", all);
 	while (all->map.tab[y])
 	{
 		x = 0;
@@ -84,7 +84,7 @@ static void		ft_parse_line(char *str, int y, t_all *all)
 
 	x = 0;
 	if (!(ft_strchr(str, '1')))
-		exit_cub("Error\nWrong string after map", all);
+		abort_cub("Error\nString after map", all);
 	while (str[x])
 	{
 		if (str[x] == 'N' || str[x] == 'S' || str[x] == 'W' || str[x] == 'E')
@@ -95,7 +95,7 @@ static void		ft_parse_line(char *str, int y, t_all *all)
 		else if (str[x] == '2')
 			all->map.sprites++;
 		else if (str[x] != '0' && str[x] != '1' && str[x] != ' ')
-			exit_cub("Error\nInvalid symbols in the map", all);
+			abort_cub("Error\nInvalid map", all);
 		x++;
 	}
 }
@@ -110,7 +110,7 @@ void			ft_parse_map(t_all *all, t_list *params)
 	while (params && ft_atoi(params->content) == 0)
 		params = params->next;
 	if (!(all->map.tab = malloc_mem(sizeof(char *) * (ft_lstsize(params) + 1))))
-		exit_cub("Error\nMalloc for map failed", all);
+		abort_cub("Error\nMalloc failed", all);
 	while (params)
 	{
 		ft_parse_line(params->content, y, all);

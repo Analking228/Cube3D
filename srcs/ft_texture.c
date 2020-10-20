@@ -15,15 +15,15 @@
 static void		ft_texture_import(char *path, t_img *texture, t_all *all)
 {
 	if (texture->img != NULL)
-		exit_cub("Error\nMultiple texture including", all);
+		abort_cub("Error\nMultiple texture including", all);
 	texture->img = mlx_xpm_file_to_image(all->frame.mlx, \
 			path, &texture->width, &texture->height);
 	if (texture->img == NULL)
-		exit_cub("Error\nInvalid texture file", all);
+		abort_cub("Error\nInvalid texture file", all);
 	texture->addr = mlx_get_data_addr(texture->img, \
 				&texture->bpp, &texture->len, &texture->endian);
 	if (texture->addr == NULL)
-		exit_cub("Error\nInvalid texture file", all);
+		abort_cub("Error\nInvalid texture file", all);
 }
 
 void		ft_texture(char *str, t_all *all, char type)

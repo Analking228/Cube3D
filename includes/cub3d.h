@@ -61,6 +61,7 @@ typedef struct		s_bmp_info_header
 	uint32_t		clr_used;
 	uint32_t		clr_important;
 }					t_bmp_info_header;
+
 # pragma pack()
 
 typedef struct		s_plr
@@ -181,7 +182,7 @@ typedef struct		s_all
 }					t_all;
 
 int					close_me(t_all *all);
-int					exit_cub(char *error, t_all *all);
+int					abort_cub(char *error, t_all *all);
 void				ft_validate_map(t_all *all, char **map);
 void				ft_validate_params(t_all *all);
 int					ft_validation(int argc, char **argv, t_all *all);

@@ -14,7 +14,7 @@
 
 int			close_me(t_all *all)
 {
-	exit_cub("Exit from cub.", all);
+	abort_cub("Exit from cub.", all);
 	return (-1);
 }
 
@@ -40,7 +40,7 @@ static void	close_mlx(t_all *all)
 		free(all->frame.mlx);
 }
 
-int			exit_cub(char *error, t_all *all)
+int			abort_cub(char *error, t_all *all)
 {
 	ft_putendl(error);
 	close_mlx(all);
