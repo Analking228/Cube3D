@@ -37,7 +37,7 @@ static t_img			init_side(t_all *all, t_ray ray, int *flag)
 	}
 }
 
-static t_render_utils	create_stripe(t_all *all, int i, t_img text)
+static t_render_utils	create_stripe(t_all *all, int i, t_img texture)
 {
 	t_render_utils col;
 
@@ -48,12 +48,12 @@ static t_render_utils	create_stripe(t_all *all, int i, t_img text)
 	col.top = all->frame.h / 2.0 - col.height / 2;
 	if (all->ray[i].is_vert)
 		col.t_x = remainder(all->ray[i].hit_y, all->map.pix) / \
-					all->map.pix * text.width;
+					all->map.pix * texture.width;
 	else
 		col.t_x = remainder(all->ray[i].hit_x, all->map.pix) / \
-					all->map.pix * text.width;
-	col.t_x = col.t_x & (unsigned int)(text.height - 1);
-	col.step = text.height / col.height;
+					all->map.pix * texture.width;
+	col.t_x = col.t_x & (unsigned int)(texture.height - 1);
+	col.step = texture.height / col.height;
 	col.text_pos = (col.top - all->frame.h / 2.0 + col.height / 2.0) * col.step;
 	col.y = (int)col.top;
 	return (col);
@@ -89,8 +89,8 @@ static void				rendering_walls(t_all *all)
 int						rendering(t_all *all)
 {
 	mlx_do_sync(all->frame.mlx);
-	ft_floor_n_ceiling(0, 0, all);
-	ft_floor_n_ceiling(0, all->frame.h / 2, all);
+	ft_backstage_ceilling(0, 0, all, all->map.c_color);
+	ft_backstage_floor(0, all->frame.h / 2, all, all->map.f_color);
 	plr_spot(all);
 	raycast(all);
 	rendering_walls(all);
