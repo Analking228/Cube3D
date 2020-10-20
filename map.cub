@@ -2,11 +2,11 @@ R 1920 1080
 
 NO ./textures/redbrick.xpm
 
-SO ./textures/colorstone.xpm
+SO ./textures/eagle.xpm
 
 WE ./textures/greystone.xpm
 
-EA ./textures/wood.xpm
+EA ./textures/colorstone.xpm
 
 S ./textures/star.xpm
 

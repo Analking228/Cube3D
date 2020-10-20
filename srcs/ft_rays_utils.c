@@ -86,7 +86,7 @@ static t_ray_utils	horisontal(t_all *all, t_ray *ray)
 	return (h);
 }
 
-void				raycast(t_all *all)
+void				ft_raycast(t_all *all)
 {
 	int				i;
 	double			angle;

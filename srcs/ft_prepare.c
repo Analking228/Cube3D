@@ -39,7 +39,7 @@ static void		initialization(t_all *all)
 	all->map.sprites = 0;
 }
 
-static void		create_img(t_img *img, t_frame *screen, t_all *all)
+static void		ft_prepare_img(t_img *img, t_frame *screen, t_all *all)
 {
 	img->img = mlx_new_image(screen->mlx, screen->w, screen->h);
 	if (img->img == NULL)
@@ -54,17 +54,17 @@ void			ft_preparation(t_all *all, char *path, int bmp)
 {
 	initialization(all);
 	if (!(all->frame.mlx = mlx_init()))
-		exit_cub("Error\nmlx init failed", all);
+		exit_cub("Error\nmlx initiation failed", all);
 	ft_parse(path, all);
 	if (!(all->ray = malloc_mem(sizeof(t_ray) * all->frame.w)))
 		exit_cub("Error\nmalloc for rays failed", all);
-	create_img(&all->img, &all->frame, all);
-	rendering(all);
+	ft_prepare_img(&all->img, &all->frame, all);
+	ft_rendering(all);
 	if (bmp == TRUE)
 		ft_bmp(all);
 	all->frame.win = mlx_new_window(all->frame.mlx, \
 				all->frame.w, all->frame.h, "cub3D");
 	if (all->frame.win == NULL)
-		exit_cub("Error: mlx new win failed", all);
+		exit_cub("Error\nmlx new window failed", all);
 	mlx_put_image_to_window(all->frame.mlx, all->frame.win, all->img.img, 0, 0);
 }

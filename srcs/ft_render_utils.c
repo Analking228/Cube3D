@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static t_img			init_side(t_all *all, t_ray ray, int *flag)
+static t_img			ft_render_side(t_all *all, t_ray ray, int *flag)
 {
 	*flag = 0;
 	if (ray.is_vert)
@@ -37,7 +37,7 @@ static t_img			init_side(t_all *all, t_ray ray, int *flag)
 	}
 }
 
-static t_render_utils	create_stripe(t_all *all, int i, t_img texture)
+static t_render_utils	ft_render_colomn(t_all *all, int i, t_img texture)
 {
 	t_render_utils col;
 
@@ -59,9 +59,9 @@ static t_render_utils	create_stripe(t_all *all, int i, t_img texture)
 	return (col);
 }
 
-static void				rendering_walls(t_all *all)
+static void				ft_render_walls(t_all *all)
 {
-	t_img				text;
+	t_img				side;
 	t_render_utils		c;
 	int					i;
 	int					flag;
@@ -69,14 +69,14 @@ static void				rendering_walls(t_all *all)
 	i = 0;
 	while (i < all->frame.w)
 	{
-		text = init_side(all, all->ray[i], &flag);
-		c = create_stripe(all, i, text);
+		side = ft_render_side(all, all->ray[i], &flag);
+		c = ft_render_colomn(all, i, side);
 		while (c.y < c.top + c.height)
 		{
-			c.t_y = (unsigned int)c.text_pos & ((unsigned int)text.height - 1);
-			c.color = !flag ? text.addr + (c.t_y * text.len + c.t_x *
-						(text.bpp / 8)) : text.addr + (c.t_y * text.len +
-							((64 - c.t_x) % 64) * (text.bpp / 8));
+			c.t_y = (unsigned int)c.text_pos & ((unsigned int)side.height - 1);
+			c.color = !flag ? side.addr + (c.t_y * side.len + c.t_x *
+						(side.bpp / 8)) : side.addr + (c.t_y * side.len +
+							((64 - c.t_x) % 64) * (side.bpp / 8));
 			c.text_pos += c.step;
 			if (c.y >= 0 && c.y < all->frame.h && i >= 0 && i < all->frame.w)
 				my_mlx_pixel_put(&all->img, i, c.y, *(unsigned int *)c.color);
@@ -86,14 +86,14 @@ static void				rendering_walls(t_all *all)
 	}
 }
 
-int						rendering(t_all *all)
+int						ft_rendering(t_all *all)
 {
 	mlx_do_sync(all->frame.mlx);
 	ft_backstage_ceilling(0, 0, all, all->map.c_color);
 	ft_backstage_floor(0, all->frame.h / 2, all, all->map.f_color);
-	plr_spot(all);
-	raycast(all);
-	rendering_walls(all);
-	rendering_spr(all);
+	plr_pos(all);
+	ft_raycast(all);
+	ft_render_walls(all);
+	ft_sprite_render(all);
 	return (1);
 }

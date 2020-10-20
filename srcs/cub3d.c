@@ -31,7 +31,7 @@ int			ft_wall(double x, double y, t_all *all)
 	return (all->map.tab[m_y][m_x] == '1');
 }
 
-void		plr_spot(t_all *all)
+void		plr_pos(t_all *all)
 {
 	double	x;
 	double	y;
@@ -76,7 +76,7 @@ int			key_p(int keycode, t_all *all)
 		all->plr.walk_dir = 1;
 		all->plr.sideways = TRUE;
 	}
-	rendering(all);
+	ft_rendering(all);
 	mlx_put_image_to_window(all->frame.mlx, all->frame.win, all->img.img, 0, 0);
 	return (1);
 }

@@ -92,7 +92,7 @@ static void			ft_sprite(t_all *all, t_sprite sp)
 	}
 }
 
-void				rendering_spr(t_all *all)
+void				ft_sprite_render(t_all *all)
 {
 	int				i;
 
