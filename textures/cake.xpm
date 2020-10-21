@@ -2,7 +2,7 @@
 static char *cake[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 15 1 ",
-"  c black",
+"  c purple",
 ". c #1B1B1B",
 "X c #2C2C2C",
 "o c #503000",
@@ -16,7 +16,7 @@ static char *cake[] = {
 "* c #FCA048",
 "= c #FCE0B4",
 "- c gray100",
-"; c None",
+"; c black",
 /* pixels */
 ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
 ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
