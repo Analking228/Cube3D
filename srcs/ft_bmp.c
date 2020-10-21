@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-t_bmp_file_header		file_header(t_all *all)
+static t_bmp_file_header		file_header(t_all *all)
 {
 	t_bmp_file_header	bf;
 
@@ -25,7 +25,7 @@ t_bmp_file_header		file_header(t_all *all)
 	return (bf);
 }
 
-t_bmp_info_header		info_header(t_all *all)
+static t_bmp_info_header		info_header(t_all *all)
 {
 	t_bmp_info_header	bi;
 

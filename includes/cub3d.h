@@ -181,26 +181,86 @@ typedef struct		s_all
 	t_frame			frame;
 }					t_all;
 
-int					close_me(t_all *all);
-int					abort_cub(char *error, t_all *all);
-void				ft_validate_map(t_all *all, char **map);
-void				ft_validate_params(t_all *all);
-int					ft_validation(int argc, char **argv, t_all *all);
-void				ft_validate_color(char *line, char clr, t_all *all);
-void				ft_validate_line(char *line, t_all *all);
-void				ft_preparation(t_all *all, char *path, int bmp);
-void				ft_bmp(t_all *all);
-int					create_trgb(int t, int r, int g, int b);
-int					ft_rendering(t_all *all);
-void				ft_backstage_floor(int x, int y, t_all *all, int color);
-void				ft_backstage_ceilling(int x, int y, t_all *all, int color);
-void				ft_parse_map(t_all *all, t_list *params);
-void				ft_parse(char *map, t_all *all);
-void				ft_raycast(t_all *all);
-void				ft_sprite(t_all *all);
+/*
+						************* cub3d.c *************
+*/
+
 int					ft_wall(double x, double y, t_all *all);
 void				plr_pos(t_all *all);
-void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+/*
+						************* ft_bmp.c *************
+*/
+
+void				ft_bmp(t_all *all);
+
+/*
+						************* ft_color_utils.c *************
+*/
+
+int					create_trgb(int t, int r, int g, int b);
+void				ft_backstage_floor(int x, int y, t_all *all, int color);
+void				ft_backstage_ceilling(int x, int y, t_all *all, int color);
+
+/*
+						************* ft_map.c *************
+*/
+
+void				ft_parse_map(t_all *all, t_list *map_strs);
+
+/*
+						************* ft_parser.c *************
+*/
+
+void				ft_parse(char *map, t_all *all);
+
+/*
+						************* ft_prepare.c *************
+*/
+
+void				ft_preparation(t_all *all, char *path, int bmp);
+
+/*
+						************* ft_rays.c *************
+*/
+
+void				ft_raycast(t_all *all);
+
+/*
+						************* ft_render.c *************
+*/
+
+int					ft_rendering(t_all *all);
+void				ft_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+/*
+						************* ft_sprite.c *************
+*/
+
+void				ft_sprite(t_all *all);
+void				ft_sprite_draw(t_all *all);
+
+/*
+						************* ft_terminators.c *************
+*/
+
+int					close_me(t_all *all);
+int					abort_cub(char *error, t_all *all);
+
+/*
+						************* ft_texture.c *************
+*/
+
 void				ft_texture(char *str, t_all *all, char type);
+
+/*
+						************* ft_validate.c *************
+*/
+
+int					ft_validation(int argc, char **argv, t_all *all);
+void				ft_validate_map(t_all *all, char **map);
+void				ft_validate_params(t_all *all);
+void				ft_validate_color(char *line, char clr, t_all *all);
+void				ft_validate_line(char *line, t_all *all);
 
 #endif

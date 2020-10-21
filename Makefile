@@ -18,14 +18,13 @@ LIBFT_FLAGS = -L $(LIBFT_DIR) -lft
 FILES = cub3d \
 		ft_bmp \
 		ft_color_utils \
-		ft_errors \
-		ft_floor_n_ceiling \
 		ft_map \
 		ft_parser \
 		ft_prepare \
-		ft_rays_utils \
-		ft_render_utils \
-		ft_sprite_utils \
+		ft_rays \
+		ft_render \
+		ft_sprite \
+		ft_terminators \
 		ft_texture \
 		ft_validate \
 

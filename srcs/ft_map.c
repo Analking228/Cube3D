@@ -50,33 +50,7 @@ static void		ft_align(t_all *all, int max)
 		abort_cub("Error\nNo player position", all);
 }
 
-static void		draw_sprite(t_all *all)
-{
-	int			i;
-	int			x;
-	int			y;
 
-	y = 0;
-	i = 0;
-	all->sprite = malloc_mem(sizeof(t_sprite) * (all->map.sprites));
-	if (all->sprite == NULL)
-		abort_cub("Error\nSprite malloc failed", all);
-	while (all->map.tab[y])
-	{
-		x = 0;
-		while (all->map.tab[y][x])
-		{
-			if (all->map.tab[y][x] == '2')
-			{
-				all->sprite[i].x = (x + 0.5) * all->map.pix;
-				all->sprite[i].y = (y + 0.5) * all->map.pix;
-				i++;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 static void		ft_parse_line(char *str, int y, t_all *all)
 {
@@ -100,23 +74,23 @@ static void		ft_parse_line(char *str, int y, t_all *all)
 	}
 }
 
-void			ft_parse_map(t_all *all, t_list *params)
+void			ft_parse_map(t_all *all, t_list *map_strs)
 {
 	size_t		y;
 	size_t		m;
 
 	y = 0;
 	m = 0;
-	while (params && ft_atoi(params->content) == 0)
-		params = params->next;
-	if (!(all->map.tab = malloc_mem(sizeof(char *) * (ft_lstsize(params) + 1))))
+	while (map_strs && ft_atoi(map_strs->content) == 0)
+		map_strs = map_strs->next;
+	if (!(all->map.tab = malloc_mem(sizeof(char *) * (ft_lstsize(map_strs) + 1))))
 		abort_cub("Error\nMalloc failed", all);
-	while (params)
+	while (map_strs)
 	{
-		ft_parse_line(params->content, y, all);
-		all->map.tab[y++] = params->content;
-		m = m < ft_strlen(params->content) ? ft_strlen(params->content) : m;
-		params = params->next;
+		ft_parse_line(map_strs->content, y, all);
+		all->map.tab[y++] = map_strs->content;
+		m = m < ft_strlen(map_strs->content) ? ft_strlen(map_strs->content) : m;
+		map_strs = map_strs->next;
 	}
 	all->map.tab[y] = NULL;
 	ft_align(all, m);
@@ -126,5 +100,5 @@ void			ft_parse_map(t_all *all, t_list *params)
 				? all->frame.h / m : all->frame.w / m;
 	all->plr.x *= all->map.pix;
 	all->plr.y *= all->map.pix;
-	draw_sprite(all);
+	ft_sprite_draw(all);
 }

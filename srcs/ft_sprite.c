@@ -87,7 +87,7 @@ static void			ft_sprite_initialization(t_all *all, t_sprite sp)
 			sp.tex_pos += sp.step;
 			if (sp.y_ff + j > all->frame.h || sp.y_ff + i < 0 || *sp.clr == 0x0)
 				continue;
-			my_mlx_pixel_put(&all->img, sp.x_ff + i, sp.y_ff + j, *sp.clr);
+			ft_mlx_pixel_put(&all->img, sp.x_ff + i, sp.y_ff + j, *sp.clr);
 		}
 	}
 }
@@ -103,5 +103,33 @@ void				ft_sprite(t_all *all)
 	{
 		ft_sprite_initialization(all, all->sprite[i]);
 		i++;
+	}
+}
+
+void			ft_sprite_draw(t_all *all)
+{
+	int			i;
+	int			x;
+	int			y;
+
+	y = 0;
+	i = 0;
+	all->sprite = malloc_mem(sizeof(t_sprite) * (all->map.sprites));
+	if (all->sprite == NULL)
+		abort_cub("Error\nSprite malloc failed", all);
+	while (all->map.tab[y])
+	{
+		x = 0;
+		while (all->map.tab[y][x])
+		{
+			if (all->map.tab[y][x] == '2')
+			{
+				all->sprite[i].x = (x + 0.5) * all->map.pix;
+				all->sprite[i].y = (y + 0.5) * all->map.pix;
+				i++;
+			}
+			x++;
+		}
+		y++;
 	}
 }

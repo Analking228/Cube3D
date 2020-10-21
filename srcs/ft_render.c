@@ -12,6 +12,14 @@
 
 #include "../includes/cub3d.h"
 
+void		ft_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->len + x * (img->bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
 static t_img			ft_render_side(t_all *all, t_ray ray, int *flag)
 {
 	*flag = 0;
@@ -79,7 +87,7 @@ static void				ft_render_walls(t_all *all)
 							((64 - c.t_x) % 64) * (side.bpp / 8));
 			c.text_pos += c.step;
 			if (c.y >= 0 && c.y < all->frame.h && i >= 0 && i < all->frame.w)
-				my_mlx_pixel_put(&all->img, i, c.y, *(unsigned int *)c.color);
+				ft_mlx_pixel_put(&all->img, i, c.y, *(unsigned int *)c.color);
 			c.y++;
 		}
 		i++;

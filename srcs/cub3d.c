@@ -54,7 +54,7 @@ void		plr_pos(t_all *all)
 	all->plr.sideways = 0;
 }
 
-int			key_p(int keycode, t_all *all)
+static int			key_p(int keycode, t_all *all)
 {
 	if (keycode == ESC)
 		close_me(all);
@@ -81,7 +81,7 @@ int			key_p(int keycode, t_all *all)
 	return (1);
 }
 
-int			key_r(int keycode, t_all *all)
+static int			key_r(int keycode, t_all *all)
 {
 	if (keycode == LEFT)
 		all->plr.turn_dir = 0;

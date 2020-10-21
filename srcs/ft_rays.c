@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-static double		ft_angle(double angle)
+static double		ft_rays_angle(double angle)
 {
 	angle = remainder(angle, M_PI * 2);
 	if (angle < 0)
@@ -20,7 +20,7 @@ static double		ft_angle(double angle)
 	return (angle);
 }
 
-static double		distance(double x1, double x2, double y1, double y2)
+static double		ft_rays_distance(double x1, double x2, double y1, double y2)
 {
 	double			result;
 
@@ -28,7 +28,7 @@ static double		distance(double x1, double x2, double y1, double y2)
 	return (result);
 }
 
-static t_ray_utils	vertical(t_all *all, t_ray *ray)
+static t_ray_utils	ft_rays_vertical(t_all *all, t_ray *ray)
 {
 	t_ray_utils		v;
 
@@ -48,7 +48,7 @@ static t_ray_utils	vertical(t_all *all, t_ray *ray)
 	{
 		if (ft_wall(v.x - (ray->is_left ? 1 : 0), v.y, all) == TRUE)
 		{
-			v.dist = distance(all->plr.x, v.x, all->plr.y, v.y);
+			v.dist = ft_rays_distance(all->plr.x, v.x, all->plr.y, v.y);
 			return (v);
 		}
 		v.x += v.x_step;
@@ -57,7 +57,7 @@ static t_ray_utils	vertical(t_all *all, t_ray *ray)
 	return (v);
 }
 
-static t_ray_utils	horisontal(t_all *all, t_ray *ray)
+static t_ray_utils	ft_rays_horisontal(t_all *all, t_ray *ray)
 {
 	t_ray_utils		h;
 
@@ -77,7 +77,7 @@ static t_ray_utils	horisontal(t_all *all, t_ray *ray)
 	{
 		if (ft_wall(h.x, h.y - (ray->is_up ? 1 : 0), all) == TRUE)
 		{
-			h.dist = distance(all->plr.x, h.x, all->plr.y, h.y);
+			h.dist = ft_rays_distance(all->plr.x, h.x, all->plr.y, h.y);
 			return (h);
 		}
 		h.x += h.x_step;
@@ -97,14 +97,14 @@ void				ft_raycast(t_all *all)
 	angle = all->plr.angle - FOV / 2;
 	while (i < all->frame.w)
 	{
-		angle = ft_angle(angle);
+		angle = ft_rays_angle(angle);
 		all->ray[i].angle = angle;
 		all->ray[i].is_down = angle > 0 && angle < M_PI;
 		all->ray[i].is_up = !all->ray[i].is_down;
 		all->ray[i].is_right = angle < (M_PI / 2) || angle > (M_PI * 1.5);
 		all->ray[i].is_left = !all->ray[i].is_right;
-		v = vertical(all, &all->ray[i]);
-		h = horisontal(all, &all->ray[i]);
+		v = ft_rays_vertical(all, &all->ray[i]);
+		h = ft_rays_horisontal(all, &all->ray[i]);
 		all->ray[i].dist = v.dist > h.dist ? h.dist : v.dist;
 		all->ray[i].hit_x = v.dist > h.dist ? h.x : v.x;
 		all->ray[i].hit_y = v.dist > h.dist ? h.y : v.y;
