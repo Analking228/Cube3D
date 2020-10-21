@@ -12,7 +12,7 @@
 
 #include "../includes/cub3d.h"
 
-void		validate_line(char *line, t_all *all)
+void		ft_validate_line(char *line, t_all *all)
 {
 	while (ft_isblank(*line) && *line)
 		line++;
@@ -20,7 +20,7 @@ void		validate_line(char *line, t_all *all)
 		abort_cub("Error\nInvalid configuration instruction", all);
 }
 
-void		validate_clr(char *line, char clr, t_all *all)
+void		ft_validate_color(char *line, char clr, t_all *all)
 {
 	int		i;
 

@@ -39,7 +39,7 @@ static void		ft_parse_color(char *str, t_all *all, char color)
 	while (*str && ft_isspace(*str))
 		str++;
 	str++;
-	(ft_parse_count(str) == 2) ? validate_clr(str, color, all) :
+	(ft_parse_count(str) == 2) ? ft_validate_color(str, color, all) :
 				abort_cub("Error\nInvalid color configuration", all);
 	if (!(clr = ft_split(str, ',')))
 		abort_cub("Error\nMalloc failed", all);
@@ -111,7 +111,7 @@ static void		ft_parse_params(t_list *list, t_all *all)
 		else if (ft_strnstr(list->content, "C ", len))
 			ft_parse_color(list->content, all, 'C');
 		else
-			validate_line(list->content, all);
+			ft_validate_line(list->content, all);
 		list = list->next;
 	}
 }
