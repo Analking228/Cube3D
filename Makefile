@@ -49,14 +49,14 @@ $(OBJ_DIR):
 clean:
 	@rm -rf $(OBJ_FILES)
 	@rm -f screenshot.bmp
-	#@make -C $(LIBFT_DIR) clean
-	#@make -C $(MLX_DIR) clean
+	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLX_DIR) clean
 	@echo "Project has been cleaned"
 
 fclean: clean
 	@rm -f $(NAME)
-	#@make -C $(LIBFT_DIR) fclean
-	#@make -C $(MLX_DIR) clean
+	@make -C $(LIBFT_DIR) fclean
+	@make -C $(MLX_DIR) clean
 	@echo "$(NAME) and Libs has been removed"
 
 re: fclean all
